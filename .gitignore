@@ -1,5 +1,6 @@
 
 /target/
+/public/js
 /.nrepl*
 /src/*.*
 /src/.*
@@ -7,3 +8,8 @@
 /node_modules
 
 .lumo_cache
+
+# just using cursive to edit the code
+project.clj
+.idea
+*.iml

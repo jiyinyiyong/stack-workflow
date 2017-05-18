@@ -6,15 +6,12 @@ webpack = require 'webpack'
 module.exports =
   entry:
     style: 'respo-ui'
-    main: [
-      'shadow-cljs/client.main.js'
-    ]
   devServer:
     hot: true
-    contentBase: resolve(__dirname, 'target')
+    contentBase: resolve(__dirname, 'public')
     publicPath: '/'
   output:
-    path: path.join __dirname, '../target/'
+    path: path.join __dirname, '../public/webpack'
     filename: '[name].js'
   module:
     rules: [

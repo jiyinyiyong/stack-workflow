@@ -1,0 +1,25 @@
+<html>
+<head><title>Stack Workflow</title>
+    <link href="http://logo.mvc-works.org/mvc.png" rel="icon" type="image/png"></link>
+    <link></link>
+    <meta charset="utf-8"></meta>
+    <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+    <meta content="{}" id="ssr-stages"></meta>
+    <style>body {margin: 0;}</style>
+    <style>body * {box-sizing: border-box;}</style>
+    <script id="config" type="text/edn">{:build? true}</script>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- webpack css? there are no styles? -->
+<script src="/style.js"></script>
+<!-- --- -->
+
+<!-- cljs -->
+<script src="/js/main.js"></script>
+<script>client.main.init();</script>
+<!-- --- -->
+
+</body>
+</html>

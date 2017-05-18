@@ -1,4 +1,3 @@
-
 (ns client.main
   (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
             [client.comp.container :refer [comp-container]]
@@ -14,27 +13,25 @@
   (let [target (.querySelector js/document "#app")]
     (render! (comp-container @ref-store) target dispatch!)))
 
-(defn on-jsload! [] (clear-cache!) (render-app!) (println "Code updated."))
-
 (def ssr-stages
   (let [ssr-element (.querySelector js/document "#ssr-stages")
         ssr-markup (.getAttribute ssr-element "content")]
     (read-string ssr-markup)))
 
-(defn -main! []
-  (enable-console-print!)
+(defn start []
   (if (not (empty? ssr-stages))
     (let [target (.querySelector js/document "#app")]
       (falsify-stage!
-       target
-       (render-element (comp-container @ref-store ssr-stages))
-       dispatch!)))
+        target
+        (render-element (comp-container @ref-store ssr-stages))
+        dispatch!)))
   (render-app!)
   (add-watch ref-store :changes render-app!)
-  (println "App started.")
-  (if (fn? js/module.hot.accept)
-    (do
-     (.log js/console "Accept changes!")
-     (js/module.hot.accept "./client.comp.container.js" on-jsload!))))
+  (js/console.log "app start"))
 
-(set! (.-onload js/window) -main!)
+(defn stop []
+  (clear-cache!)
+  (js/console.log "app stop"))
+
+(defn ^:export init []
+  (start))
